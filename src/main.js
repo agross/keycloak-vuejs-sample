@@ -3,7 +3,17 @@ import Vue from "vue";
 import VueLogger from "vuejs-logger";
 import App from "./App.vue";
 
-Vue.use(VueLogger);
+const options = {
+  isEnabled: true,
+  logLevel: "debug",
+  stringifyArguments: false,
+  showLogLevel: true,
+  showMethodName: true,
+  separator: "|",
+  showConsoleColors: true
+};
+
+Vue.use(VueLogger, options);
 
 let initOptions = {
   url: "https://keycloak.kessler.playground.grossweber.com/auth/",
