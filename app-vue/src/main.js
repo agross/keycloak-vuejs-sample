@@ -1,15 +1,17 @@
+import Keycloak from "keycloak-js";
+
 let initOptions = {
   url: "https://keycloak.kessler.playground.grossweber.com/auth/",
   realm: "ldap",
   clientId: "ldap-test-vue",
-  onLoad: "login-required",
+  onLoad: "login-required"
 };
 
 let keycloak = Keycloak(initOptions);
 
 keycloak
   .init({ onLoad: initOptions.onLoad })
-  .then((auth) => {
+  .then(auth => {
     if (!auth) {
       window.location.reload();
     } else {
@@ -17,7 +19,7 @@ keycloak
 
       new Vue({
         el: "#app",
-        render: (h) => h(App, { props: { keycloak: keycloak } }),
+        render: h => h(App, { props: { keycloak: keycloak } })
       });
     }
 
@@ -25,7 +27,7 @@ keycloak
     setInterval(() => {
       keycloak
         .updateToken(70)
-        .then((refreshed) => {
+        .then(refreshed => {
           if (refreshed) {
             Vue.$log.info("Token refreshed" + refreshed);
           } else {
