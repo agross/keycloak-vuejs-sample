@@ -1,4 +1,9 @@
 import Keycloak from "keycloak-js";
+import Vue from "vue";
+import VueLogger from "vuejs-logger";
+import App from "./App.vue";
+
+Vue.use(VueLogger);
 
 let initOptions = {
   url: "https://keycloak.kessler.playground.grossweber.com/auth/",
