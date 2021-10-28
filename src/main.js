@@ -51,6 +51,3 @@ keycloak
   .catch((err) => {
     console.log("Authentication failed: " + JSON.stringify(err));
   });
-
-createApp(App)
-  .mount("#app");
