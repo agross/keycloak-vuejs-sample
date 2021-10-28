@@ -903,10 +903,12 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@baloise/vue-keycloak@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@baloise/vue-keycloak/-/vue-keycloak-1.5.0.tgz#c6b040b953da9b881a58e046ea277f7007b10fa6"
-  integrity sha512-JyPn5AAqL5ff8cXkel5vFztr3fVM/ASen0qIbOxvukdPcFj34r6KhsPxxk7Yrgkvdn9BzHcmE0xBstc5RqPE7Q==
+"@dsb-norge/vue-keycloak-js@^2.1.0-beta":
+  version "2.1.0-beta"
+  resolved "https://registry.yarnpkg.com/@dsb-norge/vue-keycloak-js/-/vue-keycloak-js-2.1.0-beta.tgz#f67aeb5dba3978d75989584058cccd4f47aee85c"
+  integrity sha512-Fg3bDjnp2inj8yluT4xb8TX6DTRc+CLFzm0cLmdCSwPy6bsPlG/+r9HM6jgzx7sGZFM/7XS2EB5tIWP9ehhGqQ==
+  dependencies:
+    keycloak-js "^15.0.2"
 
 "@hapi/address@2.x.x":
   version "2.1.4"
@@ -5203,11 +5205,6 @@ jsprim@^1.2.2:
     extsprintf "1.3.0"
     json-schema "0.2.3"
     verror "1.10.0"
-
-jwt-decode@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-3.1.2.tgz#3fb319f3675a2df0c2895c8f5e9fa4b67b04ed59"
-  integrity sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==
 
 keycloak-js@^15.0.2:
   version "15.0.2"
