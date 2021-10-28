@@ -1,14 +1,14 @@
 FROM node:lts-alpine
 
-RUN npm install -g http-server
+RUN yarn global add http-server
 
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package*.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
-RUN npm run build
+RUN yarn build
 RUN ls -la
 
 EXPOSE 8080
-CMD [ "http-server", "." ]
+CMD [ "http-server", "dist" ]

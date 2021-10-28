@@ -1,52 +1,38 @@
-import Keycloak from "keycloak-js";
-import Vue from "vue";
-import VueLogger from "vuejs-logger";
-import App from "./App.vue";
+import { createApp } from 'vue';
+import Keycloak from 'keycloak-js';
+import App from './App.vue';
 
-const options = {
-  isEnabled: true,
-  logLevel: "debug",
-  stringifyArguments: false,
-  showLogLevel: true,
-  showMethodName: true,
-  separator: "|",
-  showConsoleColors: true
-};
-
-Vue.use(VueLogger, options);
-
-let initOptions = {
-  url: "https://keycloak.kessler.playground.grossweber.com/auth/",
+const keycloakOptions = {
+  url: process.env.VUE_APP_KEYCLOAK_URL,
   realm: "ldap",
   clientId: "ldap-test-vue",
-  onLoad: "login-required"
+  onLoad: "login-required",
 };
 
-let keycloak = Keycloak(initOptions);
+const keycloak = Keycloak(keycloakOptions);
 
 keycloak
-  .init({ onLoad: initOptions.onLoad })
-  .then(auth => {
+  .init({ onLoad: keycloakOptions.onLoad })
+  .then((auth) => {
     if (!auth) {
       window.location.reload();
     } else {
-      Vue.$log.info("Authenticated");
+      console.log("Authenticated");
 
-      new Vue({
-        el: "#app",
-        render: h => h(App, { props: { keycloak: keycloak } })
-      });
+      createApp(App,
+        { props: { keycloak: keycloak } ,
+      }).mount("#app");
     }
 
     // Token Refresh
     setInterval(() => {
       keycloak
         .updateToken(70)
-        .then(refreshed => {
+        .then((refreshed) => {
           if (refreshed) {
-            Vue.$log.info("Token refreshed" + refreshed);
+            console.log("Token refreshed" + refreshed);
           } else {
-            Vue.$log.warn(
+            console.log(
               "Token not refreshed, valid for " +
                 Math.round(
                   keycloak.tokenParsed.exp +
@@ -57,11 +43,14 @@ keycloak
             );
           }
         })
-        .catch(() => {
-          Vue.$log.error("Failed to refresh token");
+        .catch((err) => {
+          console.log("Failed to refresh token: " + JSON.stringify(err));
         });
     }, 6000);
   })
-  .catch(() => {
-    Vue.$log.error("Authenticated Failed");
+  .catch((err) => {
+    console.log("Authentication failed: " + JSON.stringify(err));
   });
+
+createApp(App)
+  .mount("#app");
