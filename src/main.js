@@ -9,12 +9,12 @@ app.use(VueKeyCloak, {
     flow: "standard", // default
     checkLoginIframe: false, // default
     onLoad: "login-required", // default,
-    enableLogging: true
+    enableLogging: true,
   },
   config: {
     url: process.env.VUE_APP_KEYCLOAK_URL,
-    realm: "ldap",
-    clientId: "ldap-test-vue",
+    realm: "keycloak-vuejs-sample",
+    clientId: "keycloak-vuejs-sample",
   },
   onReady(keycloak) {
     console.log("Keycloak ready", keycloak);
