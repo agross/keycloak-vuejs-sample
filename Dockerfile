@@ -6,7 +6,7 @@ RUN yarn global add http-server
 
 WORKDIR /app
 COPY package*.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 COPY . .
 RUN yarn build --mode ${MODE}
