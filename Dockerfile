@@ -1,6 +1,8 @@
-FROM node:lts-alpine
+FROM node:17.9.1-alpine
 
 ARG MODE=production
+# https://github.com/webpack/webpack/issues/14532
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN yarn global add http-server
 
