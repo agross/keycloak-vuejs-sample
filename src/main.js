@@ -13,8 +13,8 @@ app.use(VueKeyCloak, {
   },
   config: {
     url: process.env.VUE_APP_KEYCLOAK_URL,
-    realm: "keycloak-vuejs-sample",
-    clientId: "keycloak-vuejs-sample",
+    realm: "wpm-dev",
+    clientId: "wpm-client-app",
   },
   onReady(keycloak) {
     console.log("Keycloak ready", keycloak);
