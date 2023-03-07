@@ -1,8 +1,18 @@
 import { createApp } from 'vue';
 import VueKeyCloak from "@dsb-norge/vue-keycloak-js";
+import { vueAxios } from "@baloise/vue-axios";
 import App from './App.vue';
 
+import VueDatePicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+
 const app = createApp(App);
+
+app.component("VueDatePicker", VueDatePicker);
+
+app.use(vueAxios, {
+  baseURL: "https://api.production.kessler.grossweber.com",
+});
 
 app.use(VueKeyCloak, {
   init: {
