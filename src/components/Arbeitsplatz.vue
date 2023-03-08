@@ -39,6 +39,7 @@ export default {
           endTime: new Date(1, 1, 1, this.bis.hours, this.bis.minutes, this.bis.seconds),
         },
         {
+          timeout: 10000,
           headers:{
             'Authorization': `Bearer ${this.$keycloak.token}`
           }

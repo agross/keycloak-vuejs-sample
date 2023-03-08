@@ -52,7 +52,8 @@ export default {
        await get(
         "https://api.production.kessler.grossweber.com/workplaces/",
         {
-        params: {
+          timeout: 10000,
+          params: {
             date: this.datum,
             startTime: new Date(1, 1, 1, this.von.hours, this.von.minutes, this.von.seconds),
             endTime: new Date(1, 1, 1, this.bis.hours, this.bis.minutes, this.bis.seconds),
